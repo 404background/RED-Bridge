@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html id="window">
+<link rel="stylesheet" type="text/css" href="./styles.css">
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+<meta name="viewport" contnt="width=device-width, height=device-height">
+<body id="container">
+  <div id="icon-column">
+  </div>
+
+  <div id="work-column">
+    <script src="./node/node.js" onload="iconNode()"></script>
+  </div>
+
+  <script>
+    window.myApi.iconDisplay()
+  </script>
+</body>
+</html>

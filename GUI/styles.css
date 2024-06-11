@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono');
+
+:root {
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  body { background: #333; color: white; }
+  img { filter: invert(50%); }
+}
+
+@media (prefers-color-scheme: light) {
+  body { background: #ddd; color: black; }
+}
+
+.web-view {
+  width: 800px;
+  height: 600px;
+}
+
+#container {
+  width: 98vw;
+  height: 98vh;
+  display: grid;
+  grid-template-columns: 30px auto;
+  grid-template-rows: auto;
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+}
+
+#icon-column {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+#work-column {
+  grid-area: 1 / 2 / 2 / 3;
+  width: 97vw;
+  height: 95vh;
+}
+
+#work-iframe {
+  width: 100%;
+  height: 100%;
+}
+
+#footer {
+  grid-area: 2 / 1 / 3 / 3;
+  align-self: end;
+  justify-self: end;
+  padding: 3px;
+  position:fixed;
+}
+
+.select-icon {
+  width: 25px;
+  height: 25px;
+  padding: 0px 5px 0px 0px;
+}
+
+.select-icon:hover {
+  opacity: 0.5;
+  padding: 0px 0px 0px 5px;
+}
+
+textarea {
+  font-family: 'Ubuntu Mono', monospace;
+  outline: none;
+  font-size: 20px;
+}
+
+input {
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 20px;
+}
+
+input::placeholder{
+  color: gray;
+}
+
+button {
+  font-size: 16px;
+  margin: 2px;
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+  color: gray;
+}
+
+/* for node */
+
+#node-red {
+  width: 95vw;
+  height: 95vh;
+}
+
+#node-split {
+  display: flex;
+  border: 1px solid #808080;
+}
+
+#node-left-view {
+  background-color: #F0F0F0;
+  flex-basis: 60vw;
+  height: 95vh;
+}
+#node-right-view {
+  flex-basis: 40vw;
+  height: 95vh;
+}
+
+#node-splitter {
+  flex-basis: 5px;
+  cursor: col-resize; 
+  background-color: gray;
+}
+
+/* #node-splitter:hover {
+  flex-basis: 20px;
+  background-color: transparent;
+} */

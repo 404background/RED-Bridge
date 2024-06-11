@@ -1,0 +1,33 @@
+{
+  "name": "red-bridge",
+  "version": "0.0.1",
+  "description": "Bridge to connect to any software by Node-RED",
+  "main": "node-red.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gui": "electron ./GUI/gui.js",
+    "node-red": "start node node-red.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/404background/RED-Bridge.git"
+  },
+  "keywords": [
+    "node-red"
+  ],
+  "author": "404background",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/404background/RED-Bridge/issues"
+  },
+  "homepage": "https://github.com/404background/RED-Bridge#readme",
+  "dependencies": {
+    "electron": "^31.0.0",
+    "express": "^4.19.2",
+    "node-red": "^3.1.9",
+    "node-red-contrib-aedes": "^0.13.0",
+    "node-red-contrib-flowake-ros-nodes": "^1.2.0",
+    "node-red-contrib-ros": "^1.0.10",
+    "node-red-dashboard": "^3.6.5"
+  }
+}

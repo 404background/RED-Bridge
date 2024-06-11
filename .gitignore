@@ -1,3 +1,8 @@
+.node-red/
+package-lock.json
+
+#Node
+
 # Logs
 logs
 *.log
