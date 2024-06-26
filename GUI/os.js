@@ -47,15 +47,6 @@ let openExternal = ipcMain.handle('open-external', async (event, url) => {
   shell.openExternal(url)
 })
 
-let darkMode = ipcMain.handle('dark-mode:toggle', () => {
-  if (nativeTheme.shouldUseDarkColors) {
-    nativeTheme.themeSource = 'light'
-  } else {
-    nativeTheme.themeSource = 'dark'
-  }
-  return nativeTheme.shouldUseDarkColors
-})
-
 let execHandle = ipcMain.handle('exec-handle', async (event, command) => {
   child_process.exec(command, (error, stdout, stderr) => {
     if ( error instanceof Error) {
@@ -75,17 +66,11 @@ let execSyncHandle = ipcMain.handle('execSync-handle', async (event, command) =>
     if ( error instanceof Error) {
         console.error(error);
         console.log('execSync Error *******');
-        fs.appendFileSync('./user/error.log', error.toString().trim())
     } else {
         console.log(stdout);
         console.log('execSync Success!');
-        fs.appendFileSync('./user/console.log', stdout.toString().trim())
     }
   })
-})
-
-let sleepMs = ipcMain.handle('sleep-ms', async (event, ms) => {
-  return new Promise(resolve => setTimeout(resolve, ms))
 })
 
 module.exports = { 
@@ -93,7 +78,5 @@ module.exports = {
   fileSave, fileSaveArg,
   folderRead, folderMakeArg,
   openExternal,
-  darkMode,
-  execHandle, execSyncHandle,
-  sleepMs
+  execHandle, execSyncHandle
 }

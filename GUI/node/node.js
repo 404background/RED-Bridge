@@ -4,69 +4,78 @@ const nodeRedButton = {
     'display-reload-node': [ 'DisplayNodeRED()', 'Editor' ],
     'display-node-ui': [ 'DisplayNodeUi()', 'UI Dashboard' ],
     'display-node-split': [ 'DisplayNodeSplit()', 'Split' ]
+}
+
+function iconNode() {
+  const divID = ['node']
+  window.common.iconInit('node', divID)
+  node = document.getElementById(divID[0])
+
+  for(i in nodeRedButton) {
+    let element = document.createElement('button')
+    element.setAttribute('id', i)
+    element.setAttribute('onclick', nodeRedButton[i][0])
+    element.innerHTML = nodeRedButton[i][1]
+    node.appendChild(element)
   }
-  
-  function iconNode() {
-    const divID = ['node']
-    window.common.iconInit('node', divID)
-    node = document.getElementById(divID[0])
-  
-    for(i in nodeRedButton) {
-      let element = document.createElement('button')
-      element.setAttribute('id', i)
-      element.setAttribute('onclick', nodeRedButton[i][0])
-      element.innerHTML = nodeRedButton[i][1]
-      node.appendChild(element)
-    }
-    let nodeView = document.createElement('div')
-    nodeView.setAttribute('id', 'node-view')
-    node.appendChild(nodeView)
-  
-    DisplayNodeRED()
-  }
-  
-  function StartNodeRED() {
-    window.os.exec('npm run node-red')
-  }
-  
-  function DisplayNodeRED() {
-    let nodeView = document.getElementById('node-view')
-    if(nodeView.hasChildNodes()) {
-      nodeView.removeChild(nodeView.firstChild)
-    }
-    let webview = document.createElement('webview')
-    webview.setAttribute('id', 'node-red')
-    webview.setAttribute('src', 'http://localhost:8000/red')
-    nodeView.appendChild(webview)
-  }
-  
-  function DisplayNodeUi() {
-    let nodeView = document.getElementById('node-view')
+
+  let element = document.createElement('input')
+  element.setAttribute('id', 'node-ipaddress')
+  element.setAttribute('type', 'text')
+  element.value = 'localhost'
+  node.appendChild(element)
+
+  let nodeView = document.createElement('div')
+  nodeView.setAttribute('id', 'node-view')
+  node.appendChild(nodeView)
+
+  DisplayNodeRED()
+}
+
+function StartNodeRED() {
+  window.os.exec('npm run node-red')
+}
+
+function DisplayNodeRED() {
+  let nodeView = document.getElementById('node-view')
+  if(nodeView.hasChildNodes()) {
     nodeView.removeChild(nodeView.firstChild)
-    let webview = document.createElement('webview')
-    webview.setAttribute('id', 'node-red')
-    webview.setAttribute('src', 'http://localhost:8000/api/ui')
-    nodeView.appendChild(webview)
   }
-  
-  function DisplayNodeSplit() {
-    let splitView = document.createElement('div')
-    splitView.setAttribute('id', 'node-split')
-    let leftView = document.createElement('webview')
-    leftView.setAttribute('id', 'node-left-view')
-    leftView.setAttribute('src', 'http://localhost:8000/red')
-    let rightView = document.createElement('webview')
-    rightView.setAttribute('id', 'node-right-view')
-    rightView.setAttribute('src', 'http://localhost:8000/api/ui')
-    let splitter = document.createElement('div')
-    splitter.setAttribute('id', 'node-splitter')
-  
-    let nodeView = document.getElementById('node-view')
-    nodeView.removeChild(nodeView.firstChild)
-    nodeView.appendChild(splitView)
-  
-    splitView.appendChild(leftView)
-    splitView.appendChild(splitter)
-    splitView.appendChild(rightView)
-  }
-  
+  let webview = document.createElement('webview')
+  let ipaddress = document.getElementById('node-ipaddress').value
+  webview.setAttribute('id', 'node-red')
+  webview.setAttribute('src', `http://${ipaddress}:8000/red`)
+  nodeView.appendChild(webview)
+}
+
+function DisplayNodeUi() {
+  let nodeView = document.getElementById('node-view')
+  nodeView.removeChild(nodeView.firstChild)
+  let webview = document.createElement('webview')
+  let ipaddress = document.getElementById('node-ipaddress').value
+  webview.setAttribute('id', 'node-red')
+  webview.setAttribute('src', `http://${ipaddress}:8000/api/ui`)
+  nodeView.appendChild(webview)
+}
+
+function DisplayNodeSplit() {
+  let ipaddress = document.getElementById('node-ipaddress').value
+  let splitView = document.createElement('div')
+  splitView.setAttribute('id', 'node-split')
+  let leftView = document.createElement('webview')
+  leftView.setAttribute('id', 'node-left-view')
+  leftView.setAttribute('src', `http://${ipaddress}:8000/red`)
+  let rightView = document.createElement('webview')
+  rightView.setAttribute('id', 'node-right-view')
+  rightView.setAttribute('src', `http://${ipaddress}:8000/api/ui`)
+  let splitter = document.createElement('div')
+  splitter.setAttribute('id', 'node-splitter')
+
+  let nodeView = document.getElementById('node-view')
+  nodeView.removeChild(nodeView.firstChild)
+  nodeView.appendChild(splitView)
+
+  splitView.appendChild(leftView)
+  splitView.appendChild(splitter)
+  splitView.appendChild(rightView)
+}

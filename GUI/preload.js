@@ -28,10 +28,6 @@ contextBridge.exposeInMainWorld('myApi', {
   },
 })
 
-contextBridge.exposeInMainWorld('darkMode', {
-  toggle: () => ipcRenderer.invoke('dark-mode:toggle')
-})
-
 contextBridge.exposeInMainWorld('os', {
   openExternal: () => ipcRenderer.invoke('open-external', url),
   exec: (command) => ipcRenderer.invoke('exec-handle', command),
@@ -67,10 +63,6 @@ contextBridge.exposeInMainWorld('os', {
   },
   folderRead: (path) => ipcRenderer.invoke('folder-read', path),
   folderMakeArg: (path) => ipcRenderer.invoke('folder-make-arg', path),
-})
-
-contextBridge.exposeInMainWorld('sleep', {
-  ms: (ms) => ipcRenderer.invoke('sleep-ms', ms)
 })
 
 contextBridge.exposeInMainWorld('common', {
